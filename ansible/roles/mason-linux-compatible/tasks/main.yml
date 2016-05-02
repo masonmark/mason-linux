@@ -1,7 +1,19 @@
 ---
 # tasks file for mason-linux-compatible
 
-# In this first version, we simply always fail no matter what.
+
+# This is just a way to test/debug stuff early in the Ansible run:
+
+#- set_fact:
+#    uno: "{{ '2.3.1' | version_compare('1.0', operator='gt', strict=True) }}"
+#    dos: "{{ '2.3.1' | version_compare('2.3.1', operator='gt', strict=True) }}"
+#    tres: "{{ '2.3.1' | version_compare('2.3.1p.235', operator='gt', strict=False) }}"
+#    cuatro: "{{ '2.3.1' | version_compare('2.3.2', operator='gt', strict=True) }}"
+#
+#- debug: var=uno
+#- debug: var=dos
+#- debug: var=tres # gets hard error with strict=True
+#- debug: var=cuatro
 
 - name: 'Abort unless base system is compatible'
   fail: msg="Incompatible base system{{':'}} {{ansible_distribution}} {{ansible_distribution_major_version}}"

@@ -18,6 +18,7 @@
   roles:
     - role: mason-linux-compatible
     - role: mason-linux-core
+    - role: ruby
 
     # - { role: secrets-production, when: False }
       # DIDNT WORK FOR ENCRYPTED SHIT BECAUSE ALWAYS LOADED, ANYHOW DESPITE CONDITION

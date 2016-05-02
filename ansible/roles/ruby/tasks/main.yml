@@ -1,0 +1,53 @@
+---
+# tasks file for ruby
+#
+# Note: on the CentOS 7 distros we use, ruby is not installed by default.
+
+- name: "Prerequisite: confirm that the sysadmin_homedir variable is set"
+  fail: msg="This task set requires 'sysadmin_homedir' to be set to e.g. '/home/centos'."
+  when: sysadmin_homedir is not defined
+
+- name: "Get currently installed ruby version (if any)"
+  command: ruby -v
+  become: false
+  register: ruby_version_check
+  # ignore_errors: true
+  failed_when: False
+  # Mason 2015-06-05: If ignore_errors is used, the automation does proceed, but prints scary red fail warning. Using failed_when prevents that.
+
+- name: "Set needs_ruby_installation based on result."
+  set_fact:
+    needs_ruby_installation: "{{ ruby_version_check.rc != 0 or not ruby_version in ruby_version_check.stdout }}"
+      # The val of ruby_version_check might be 2.2.2p95. We just ensure that the specified
+      # ruby_version is present in the string, and if so consider ruby installed.
+      # FIXME: instead use e.g.: foo | version_compare('2.3.2', operator='gt', strict=False)
+
+- name: "Print currently installed ruby version."
+  debug: "msg={{ruby_version_check.stdout}}"
+  when: not needs_ruby_installation|bool
+
+- block:
+  - name: 'Remove any existing Ruby source code'
+    file: state=absent path={{ sysadmin_homedir }}/ruby-{{ ruby_version }}
+      # we have to guess the extraction path at this stage
+
+  - name: "Download ruby source ({{ruby_url}})"
+    unarchive: src={{ruby_url}} dest={{ sysadmin_homedir }} copy=no list_files=yes
+    register: ruby_unarchive_result
+
+  - set_fact:
+      ruby_src_path: "{{ sysadmin_homedir }}/{{ruby_unarchive_result.files[0]}}"
+
+  # ruby_src_path is now something like "/home/centos/ruby-2.3.1/"
+
+  - name: "Install ruby (./configure)"
+    command: ./configure chdir={{ ruby_src_path }}
+
+  - name: "Install ruby (make)"
+    command: make chdir={{ ruby_src_path }}
+
+  - name: "Install ruby (install)"
+    become: true
+    command: make install chdir={{ ruby_src_path }}
+
+  when: needs_ruby_installation|bool
