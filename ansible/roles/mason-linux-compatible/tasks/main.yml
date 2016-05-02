@@ -1,0 +1,10 @@
+---
+# tasks file for mason-linux-compatible
+
+# In this first version, we simply always fail no matter what.
+
+- name: 'Abort unless base system is compatible'
+  fail: msg="Incompatible base system{{':'}} {{ansible_distribution}} {{ansible_distribution_major_version}}"
+  when: ansible_distribution != 'CentOS' or ansible_distribution_major_version != '7'
+
+    # That {{':'}} is fucking appalling, but: https://github.com/ansible/ansible/issues/2769

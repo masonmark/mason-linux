@@ -1,0 +1,23 @@
+# site.yml — the master Ansible playbook for Mason Linux
+#
+# This playbook is intended to be driven by mason_linux_deployer.rb, the script that
+# provisions and/or deploys the app to remote servers.
+
+- hosts: all
+  vars:
+    # Mason 2015-06-05: putting all vars here for now, and will figure out where they really belong later...
+
+    sysadmin_username: centos
+      # This variable may be overridden by mason_linux_deployer.rb using Ansible's --extra-vars command-line flag. Usually, this will be 'centos' (because that's how the standard AWS AMI we use as our base is set up, so we just follow their lead). This is the user that is allowed to SSH into the server, and has sudo powers.
+
+    server_type: generic
+      # These will also be overridden as needed by mason_linux_deployer.rb.
+
+    time_zone: Asia/Tokyo
+    sysadmin_homedir: /home/{{sysadmin_username}}
+
+  roles:
+    - role: mason-linux-compatible
+
+    # - { role: secrets-production, when: False }
+      # DIDNT WORK FOR ENCRYPTED SHIT BECAUSE ALWAYS LOADED, ANYHOW DESPITE CONDITION
