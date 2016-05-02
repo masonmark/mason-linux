@@ -13,11 +13,11 @@
     server_type: generic
       # These will also be overridden as needed by mason_linux_deployer.rb.
 
-    time_zone: Asia/Tokyo
     sysadmin_homedir: /home/{{sysadmin_username}}
 
   roles:
     - role: mason-linux-compatible
+    - role: mason-linux-core
 
     # - { role: secrets-production, when: False }
       # DIDNT WORK FOR ENCRYPTED SHIT BECAUSE ALWAYS LOADED, ANYHOW DESPITE CONDITION

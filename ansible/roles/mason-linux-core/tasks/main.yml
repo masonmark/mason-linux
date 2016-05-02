@@ -1,0 +1,66 @@
+---
+# tasks file for mason-linux-core
+
+- name: "Update all installed packages"
+  yum: name=* state=latest
+  register: yum_update_result
+  become: true
+
+- name: "Enable EPEL package repository"
+  yum: name=epel-release state=latest
+  become: true
+  # This is needed for nodejs: https://fedoraproject.org/wiki/EPEL
+
+- name: "Install various prerequisite packages with yum"
+  yum: pkg={{item}} state=installed
+  with_items:
+    - autoconf
+    - automake
+    - bison
+    - byobu
+    - bzip2
+    - curl
+    - gcc-c++
+    - git
+    - ImageMagick
+    - kernel-devel
+    - kernel-headers
+    - libffi-devel
+    - libtool
+    - libyaml-devel
+    - lsof
+    - make
+    - nodejs
+    - openssl-devel
+    - patch
+    - readline
+    - readline-devel
+    - sqlite-devel
+    - vim
+    - zlib
+    - zlib-devel
+  become: true
+
+- name: "Set time zone to {{ time_zone }}"
+  command: timedatectl set-timezone {{ time_zone }}
+  become: true
+
+# Mason 2016-05-02: FIXME: the below isn't appropriate here, but I am leaving it
+# in here until we add the rails app role...
+#
+#- name: "Add the {{ rails_app_user }} user that will run the app"
+#  user: name={{ rails_app_user }} state=present
+#  become: true
+#
+#- name: "Ensure {{ rails_app_user }} has /usr/local/bin in $PATH (.bashrc)"
+#  lineinfile: "dest={{ rails_app_user_homedir }}/.bashrc line='export PATH=$PATH:/usr/local/bin'"
+#  become: true
+#  become_user: "{{ rails_app_user }}"
+#
+#- name: Capture uid of {{ rails_app_user }}
+#  command: id -u {{ rails_app_user }}
+#  register: rails_app_user_uid
+#
+#- name: Capture gid of {{ rails_app_user }}
+#  command: id -g {{ rails_app_user }}
+#  register: rails_app_user_gid

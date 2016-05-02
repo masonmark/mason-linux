@@ -28,7 +28,7 @@ DEFAULT_SETTINGS = {
   ansible_playbook: 'ansible/site.yml',
   override_ssh_key: 'key',
   server_type: 'generic',
-  sysadmin_user_name: "centos",
+  sysadmin_user_name: 'centos',
   target_host: "1.2.3.4",
   target_ssh_port: 22,
 }
