@@ -13,7 +13,7 @@
     server_type: generic
       # These will also be overridden as needed by mason_linux_deployer.rb.
 
-    sysadmin_homedir: /home/{{sysadmin_username}}
+    sysadmin_homedir: /home/{{ sysadmin_username }}
 
     rails_app_name: rails_app
 
