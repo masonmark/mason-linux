@@ -27,6 +27,7 @@ VALID_SETTINGS = {
 DEFAULT_SETTINGS = {
   ansible_playbook: 'ansible/site.yml',
   override_ssh_key: 'key',
+  rails_app_name: 'my_cool_rails_app',
   server_type: 'generic',
   sysadmin_user_name: 'centos',
   target_host: "1.2.3.4",
@@ -66,6 +67,7 @@ class MasonLinuxDeployer
     extra_vars  = "--extra-vars \""
     extra_vars += "sysadmin_username='#{@settings[:sysadmin_user_name]}' "
     extra_vars += "server_type='#{@settings[:server_type]}' "
+    extra_vars += "rails_app_name='#{@settings[:rails_app_name]}' "
     extra_vars += "\" "
 
     command  = "ansible-playbook " # Mason 2016-03-15: you can add -vvvvv here to debug ansible troubles.

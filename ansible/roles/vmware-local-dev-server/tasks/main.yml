@@ -1,0 +1,19 @@
+---
+# tasks file for vmware-local-dev-server
+
+- name: 'Fail if rails_app_path is blank or undefined'
+  fail: "msg='rails_app_name may not be blank. The Rails app setup may become optional in the future, but it is currently required.'"
+  when: rails_app_name is undefined or rails_app_name is none or rails_app_name == ''
+
+- name: 'Confirm expected HGFS mount is present'
+  command: ls {{ vmware_hgfs_share_mount_point }}
+  failed_when: False
+  register: ls_hgfs_share_command
+
+- name: 'Check result'
+  fail: "msg='VMWARE SHARED FOLDER NOT FOUND — MANUAL INTERVENTION REQUIRED: Please check your VMWare Fusion settings. You have apparently selected server type vmware-fusion. This means that the automation expects a VMWare shared folder named {{ rails_app_path }} to be present at {{ vmware_hgfs_share_mount_point }} on the guest OS, and to point to the {{ rails_app_name }} project directory on the host OS. This step is not automated, so you have to manually set up this share in the VMWare Fusion preferences. It should look something like this: https://www.dropbox.com/s/uzdfx19hkyxed21/Screenshot%202016-02-02%2012.24.13.png?dl=0 '"
+  when: ls_hgfs_share_command.rc != 0
+
+- name: 'Ensure symlink to VMWare shared dir exists at /rollerball'
+  file: src={{ vmware_hgfs_share_mount_point }} dest={{ rails_app_path }}  state=link
+  become: True

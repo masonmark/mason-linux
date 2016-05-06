@@ -15,10 +15,13 @@
 
     sysadmin_homedir: /home/{{sysadmin_username}}
 
+    rails_app_name: rails_app
+
   roles:
     - role: mason-linux-compatible
     - role: mason-linux-core
     - role: ruby
+    - { role: vmware-local-dev-server, when: server_type == 'vmware-fusion'}
 
     # - { role: secrets-production, when: False }
       # DIDNT WORK FOR ENCRYPTED SHIT BECAUSE ALWAYS LOADED, ANYHOW DESPITE CONDITION

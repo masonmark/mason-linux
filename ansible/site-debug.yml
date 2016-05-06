@@ -17,5 +17,7 @@
 
     sysadmin_homedir: /home/{{sysadmin_username}}
 
+    rails_app_name: rails_app
+
   roles:
-    - role: ruby
+    - { role: vmware-local-dev-server, when: server_type == 'vmware-fusion'}

@@ -19,19 +19,19 @@
 	<key>categories</key>
 	<array/>
 	<key>createdDate</key>
-	<date>2016-05-02T06:56:03Z</date>
+	<date>2016-05-06T01:28:36Z</date>
 	<key>dataHash</key>
-	<string>01aa2c8c772b535978279b9e4655a4203bab9407</string>
+	<string>3b5a2383996eacd48c9bae1975c9871a3de6f224</string>
 	<key>displayName</key>
-	<string>Index</string>
+	<string>look at what rollerball automation does, and separate out what mason-linux should be doing</string>
 	<key>encrypted</key>
 	<string>No</string>
 	<key>key</key>
-	<string>index</string>
+	<string>look at what rollerball automation does, and separate out what mason-linux should be doing</string>
 	<key>metaValues</key>
 	<dict/>
 	<key>modifiedDate</key>
-	<date>2016-05-06T01:28:36Z</date>
+	<date>2016-05-06T05:13:16Z</date>
 	<key>shouldHighlightLinks</key>
 	<string>Yes</string>
 	<key>skipOnExport</key>
@@ -39,7 +39,7 @@
 	<key>uti</key>
 	<string>com.apple.rtfd</string>
 	<key>uuid</key>
-	<string>424d06ff-2eb5-41e6-b75b-e92704281576</string>
+	<string>fe5a1923-ac08-4f05-95c8-5c4d64c74273</string>
 	<key>version</key>
 	<integer>1</integer>
 </dict>

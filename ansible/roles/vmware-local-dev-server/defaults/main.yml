@@ -1,0 +1,12 @@
+---
+# defaults file for vmware-local-dev-server
+
+rails_app_name: 'rails_app'
+  # typically this would be overridden somewhere up the precedence chain
+
+
+vmware_hgfs_share_mount_point: /mnt/hgfs/{{ rails_app_name }}
+  # not normally defined elsewhere unless you are bucking convention
+
+rails_app_path: /{{ rails_app_name }}
+  # not normally defined elsewhere unless you are bucking convention
