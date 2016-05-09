@@ -1,0 +1,48 @@
+---
+# tasks file for ssh-node
+
+- name: 'Ensure that the app user has the SSH public key of git.fivespeed.com installed'
+  lineinfile: dest=/etc/ssh/ssh_known_hosts line="{{git_server_public_key}}" state=present create=yes
+  become: true
+  # hmm seems this may not be needed if we do accept_hostkey=yes
+  # Mason 2016-01-30: FIXME: test whether or not this is, in fact, necessary, and shitcan it if not.
+  # Mason 2016-01-31: Well it IS necessary, unless we use accept_hostkey, but if we do that then the
+  # fucking chink government (or whoever) could MITM us with a simple DNS forge, and then steal our
+  # fucking awesome Rollerball source code! So let's just put the GutHub SSH key in as a static resource.
+
+- name: 'Ensure that the app user has the SSH public key of github.com installed'
+  lineinfile: dest=/etc/ssh/ssh_known_hosts line="{{github_public_key}}" state=present create=yes
+  become: true
+
+# eno16777736 & MTU fuckery
+#
+# There was an annoying bug where the automation would hang on some VMWare dev servers and not others.
+# Changing the MTU fixed it and I am not sure of the underlying cause. This kludge works around it.
+# For more info, see: https://github.com/RobertReidInc/rollerball/issues/16
+
+- name: 'test for bizarro VMWare interface name'
+  command: '/sbin/ip link list'
+  register: ip_link_list_command
+
+- name: 'set MTU on bizarro VMWare eno16777736 interface'
+  command: '/sbin/ip link set dev eno16777736 mtu 1450'
+  become: true
+  when: "'eno16777736' in ip_link_list_command.stdout"
+
+# END eno16777736 & MTU fuckery
+
+- name: 'test SSH forwarding (GitHub)'
+  sudo: false
+  command: "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no git@github.com"
+  register: ssh_command
+  failed_when: "not ('successfully authenticated' in ssh_command.stderr)"
+  #
+  # NOTE: This is to ensure the local user running the Ansible automation has (locally) an SSH key
+  # that will allow accessing GitHub, and that SSH agent forwarding is working.
+  #
+  # You need to have github ssh key working, so this works:
+  #    [mason@tokyo ~]$ ssh git@github.com
+  #    PTY allocation request failed on channel 0
+  #    Hi masonmark! You've successfully authenticated, but GitHub does not provide shell access.
+  #    Connection to github.com closed.
+  #    [mason@tokyo ~]$
