@@ -1,5 +1,5 @@
 ---
-# defaults file for nginx role
+# defaults file for nginx-reverse-proxy-to-puma role
 
 rails_app_name: 'rails_app'
   # typically this would be overridden somewhere up the precedence chain

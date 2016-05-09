@@ -1,5 +1,5 @@
 ---
-# tasks file for nginx
+# tasks file for nginx-reverse-proxy-to-puma
 
 - name: "Add the {{ rails_app_user_name }} user that will run the app"
   user: name={{ rails_app_user_name }} state=present

@@ -26,7 +26,7 @@
     - role: ssh-node
     - role: selinux-nginx-puma
     - role: firewall-allows-web-traffic
-    - role: nginx
+    - role: nginx-reverse-proxy-to-puma
     - { role: vmware-local-dev-server, when: server_type == 'vmware-fusion'}
     # - { role: secrets-production, when: False }
       # DIDNT WORK FOR ENCRYPTED SHIT BECAUSE ALWAYS LOADED, ANYHOW DESPITE CONDITION
