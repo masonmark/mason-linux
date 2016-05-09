@@ -32,7 +32,7 @@
 # END eno16777736 & MTU fuckery
 
 - name: 'test SSH forwarding (GitHub)'
-  sudo: false
+  become: false
   command: "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no git@github.com"
   register: ssh_command
   failed_when: "not ('successfully authenticated' in ssh_command.stderr)"

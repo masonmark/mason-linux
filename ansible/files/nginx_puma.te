@@ -1,0 +1,16 @@
+
+module nginx_puma 1.0;
+
+require {
+	type unconfined_t;
+	type httpd_t;
+	type var_t;
+	class sock_file write;
+	class unix_stream_socket connectto;
+}
+
+#============= httpd_t ==============
+allow httpd_t unconfined_t:unix_stream_socket connectto;
+
+#!!!! This avc is allowed in the current policy
+allow httpd_t var_t:sock_file write;

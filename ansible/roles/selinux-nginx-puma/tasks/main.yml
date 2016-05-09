@@ -1,0 +1,23 @@
+---
+# tasks file for selinux-nginx-puma
+
+- name: 'Install SELinux frobbing prerequisites'
+  yum: pkg={{item}} state=installed
+  with_items:
+    - checkpolicy
+    - policycoreutils-python
+  become: true
+
+- name: 'Copy over SELinux nginx_puma template'
+  copy: src=files/nginx_puma.te dest={{sysadmin_homedir}}/nginx_puma.te
+
+- name: 'Run checkmodule on SELinux nginx_puma template'
+  command: checkmodule -M -m -o {{sysadmin_homedir}}/nginx_puma.mod {{sysadmin_homedir}}/nginx_puma.te
+
+- name: 'Compile  SELinux nginx_puma template'
+  command: semodule_package -o {{sysadmin_homedir}}/nginx_puma.pp -m {{sysadmin_homedir}}/nginx_puma.mod
+
+- name: 'Install SELinux nginx_puma module'
+  command: semodule -i {{sysadmin_homedir}}/nginx_puma.pp
+  become: true
+  # TODO: FIXME: Make this idempotent! Takes a long time. See .vpdoc for how to do that.

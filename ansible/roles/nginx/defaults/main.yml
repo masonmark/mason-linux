@@ -1,0 +1,10 @@
+---
+# defaults file for nginx role
+
+rails_app_name: 'rails_app'
+  # typically this would be overridden somewhere up the precedence chain
+
+rails_app_root: '/{{ rails_app_name }}/rails_app'
+
+rails_app_user_name: "{{ rails_app_name }}"
+rails_app_user_homedir: /home/{{ rails_app_name }}

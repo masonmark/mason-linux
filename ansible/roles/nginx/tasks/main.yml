@@ -1,0 +1,55 @@
+---
+# tasks file for nginx
+
+- name: "Add the {{ rails_app_user_name }} user that will run the app"
+  user: name={{ rails_app_user_name }} state=present
+  become: true
+
+- name: "Ensure {{ rails_app_user_name }} has /usr/local/bin in $PATH (.bashrc)"
+  lineinfile: "dest={{ rails_app_user_homedir }}/.bashrc line='export PATH=$PATH:/usr/local/bin'"
+  become: true
+  become_user: "{{ rails_app_user_name }}"
+
+#
+#- name: Capture uid of {{ rails_app_user }}
+#  command: id -u {{ rails_app_user }}
+#  register: rails_app_user_uid
+#
+#- name: Capture gid of {{ rails_app_user }}
+#  command: id -g {{ rails_app_user }}
+#  register: rails_app_user_gid
+#
+# Mason 2016-05-09: I think we only ever used this for kludging around Vagrant issues, and this became obsolete when we shitcanned vag.
+
+
+- name: "create the folder when puma will store its socket for nginx"
+  file: path=/var/{{ rails_app_name }} state=directory owner={{ rails_app_user_name }} mode=0775
+  become: true
+
+- name: "Install and configure nginx"
+  yum: name=nginx state=present
+  become: true
+
+- name: "copy nginx.conf to the server"
+  template: src=files/nginx.conf.j2 dest=/etc/nginx/nginx.conf
+  become: yes
+
+- name: "delete default virtualhost"
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  become: yes
+
+#- name: "Enable nginx service on boot"
+#  become: true
+#  command: sudo systemctl enable nginx.service
+#
+#- name: "Restart nginx service now"
+#  become: true
+#  command: sudo systemctl restart nginx.service
+
+- name: "Enable nginx service on boot"
+  service: name=nginx enabled=yes state=restarted
+  become: true
+
+- name: "Restart nginx service now"
+  service: name=nginx state=restarted
+  become: true
