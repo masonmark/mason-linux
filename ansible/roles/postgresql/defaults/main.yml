@@ -1,0 +1,10 @@
+---
+# defaults file for postgresql role
+
+rails_app_name: 'rails_app'
+  # typically this would be overridden somewhere up the precedence chain
+
+
+rails_app_db_username: "{{ rails_app_name }}"
+  # not normally defined elsewhere unless you are bucking convention
+

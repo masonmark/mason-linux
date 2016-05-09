@@ -19,7 +19,12 @@
 
     rails_app_name: rails_app
 
-
-
   roles:
-    - role: rails
+#    - role: mason-linux-compatible
+#    - role: mason-linux-core
+#    - role: ruby
+#    - role: rails
+    - role: postgresql
+#    - { role: vmware-local-dev-server, when: server_type == 'vmware-fusion'}
+    # - { role: secrets-production, when: False }
+      # DIDNT WORK FOR ENCRYPTED SHIT BECAUSE ALWAYS LOADED, ANYHOW DESPITE CONDITION

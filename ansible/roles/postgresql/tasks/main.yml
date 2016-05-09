@@ -1,0 +1,67 @@
+---
+# tasks file for postgresql
+
+- stat: path=/var/lib/pgsql/9.4/data/postgresql.conf
+  become: true
+  register: pg_conf_file
+
+- name: "Set fact needs_postgres_configuration"
+  set_fact:
+    needs_postgres_configuration: "{{ pg_conf_file.stat.exists == False }}"
+
+- name: "Remove old postgres packages"
+  become: true
+  yum: pkg={{ item }} state=absent
+  with_items:
+    - postgresql
+    - postgresql-devel
+    - postgresql-libs
+  when: needs_postgres_configuration|bool
+
+- name: "Add the postgres repo"
+  become: true
+  yum: name=http://yum.postgresql.org/9.4/redhat/rhel-6-x86_64/pgdg-redhat94-9.4-1.noarch.rpm
+  register: result_add_postgres_repo
+  when: needs_postgres_configuration|bool
+
+- name: "Install postgres packages"
+  become: true
+  yum: pkg={{ item }} state=present
+  with_items:
+    - postgresql94
+    - postgresql94-server
+    - postgresql94-contrib
+    - postgresql94-libs
+    - postgresql94-devel
+    - python-psycopg2
+  when: needs_postgres_configuration|bool
+
+- name: "Initialize the postgres DB"
+  command: /usr/pgsql-9.4/bin/postgresql94-setup initdb
+  become: true
+  when: needs_postgres_configuration|bool
+  # The old 'service postgres initdb' shit that you will find all over the web does not work anymore, due to the move to from SysV to systemd. For CentOS 7, this is the magic sauce.
+
+- name: "Install the pg_hba.conf file"
+  copy: src=files/pg_hba.conf
+        dest=/var/lib/pgsql/9.4/data/pg_hba.conf
+  become: true
+  when: needs_postgres_configuration|bool
+  # Our pg_hba.conf specifies that postgres user ONLY has 'ident' auth (local only), and all other postgres users will use md5
+  # as suggested here: http://stackoverflow.com/a/4328789/164017
+
+- name: "Enable postgres service on boot"
+  service: name=postgresql-9.4.service enabled=yes
+  become: true
+  when: needs_postgres_configuration|bool
+
+- name: "Ensure postgres service is running"
+  service: name=postgresql-9.4.service state=started
+  become: true
+  when: needs_postgres_configuration|bool
+
+- name: "Create the app's postgresql db user"
+  become: true
+  become_user: postgres
+  postgresql_user: name={{ rails_app_db_username }} password=secret role_attr_flags=CREATEDB,NOSUPERUSER
+  when: needs_postgres_configuration|bool
