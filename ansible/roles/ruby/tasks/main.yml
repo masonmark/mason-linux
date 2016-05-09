@@ -40,6 +40,10 @@
 
   # ruby_src_path is now something like "/home/centos/ruby-2.3.1/"
 
+  - name: "Replace ruby 2.3.1's busted installer.rb file if nec."
+    copy: src=fix-for-ruby-2.3.1-installer.rb dest={{ ruby_src_path }}/lib/rubygems/installer.rb force=yes
+    when: ruby_version == "2.3.1"
+
   - name: "Install ruby (./configure)"
     command: ./configure chdir={{ ruby_src_path }}
 

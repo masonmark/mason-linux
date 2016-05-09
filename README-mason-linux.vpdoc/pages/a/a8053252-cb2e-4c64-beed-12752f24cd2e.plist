@@ -19,19 +19,19 @@
 	<key>categories</key>
 	<array/>
 	<key>createdDate</key>
-	<date>2016-05-02T06:56:03Z</date>
+	<date>2016-05-09T04:12:51Z</date>
 	<key>dataHash</key>
-	<string>0b40c81c85d23bb9c4ada520f7eba27a3274edef</string>
+	<string>60f0746047be403751d379c942377517d0d5b7d3</string>
 	<key>displayName</key>
-	<string>Index</string>
+	<string>automation fails because ruby 2.3.1 'sudo make install' fails</string>
 	<key>encrypted</key>
 	<string>No</string>
 	<key>key</key>
-	<string>index</string>
+	<string>automation fails because ruby 2.3.1 'sudo make install' fails</string>
 	<key>metaValues</key>
 	<dict/>
 	<key>modifiedDate</key>
-	<date>2016-05-09T04:12:51Z</date>
+	<date>2016-05-09T04:14:44Z</date>
 	<key>shouldHighlightLinks</key>
 	<string>Yes</string>
 	<key>skipOnExport</key>
@@ -39,7 +39,7 @@
 	<key>uti</key>
 	<string>com.apple.rtfd</string>
 	<key>uuid</key>
-	<string>424d06ff-2eb5-41e6-b75b-e92704281576</string>
+	<string>a8053252-cb2e-4c64-beed-12752f24cd2e</string>
 	<key>version</key>
 	<integer>1</integer>
 </dict>
