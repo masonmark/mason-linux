@@ -90,6 +90,8 @@ class MasonLinuxDeployer
     puts "\nATTEMPTING TO DEPLOY VIA ANSIBLE AS FOLLOWS:\n"
     puts command
 
+    Dir.chdir PATH_TO_ROOT
+
     Kernel.system "time #{command}"
   end
 
