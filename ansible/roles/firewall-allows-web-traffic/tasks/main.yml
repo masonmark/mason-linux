@@ -1,6 +1,20 @@
 ---
 # tasks file for firewall-allows-web-traffic
 
+- stat: path=/usr/bin/firewall-cmd
+  register: firewalld_is_installed
+
+- block:
+  - name: 'Install firewalld'
+    yum: pkg=firewalld state=installed
+    become: true
+
+  - name: "Enable and restart firewalld service on boot"
+    service: name=firewalld enabled=yes state=restarted
+    become: true
+
+  when: not firewalld_is_installed
+
 - name: "firewall-cmd: open HTTP port 80"
   command: firewall-cmd --permanent --add-service http
   become: true
@@ -15,5 +29,5 @@
   become: true
 
 - name: "firewall-cmd: reload"
-  command: sudo firewall-cmd --reload
+  command: firewall-cmd --reload
   become: true

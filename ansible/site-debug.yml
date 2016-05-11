@@ -24,7 +24,7 @@
 #    - role: mason-linux-core
 #    - role: ruby
 #    - role: rails
-    - role: ruby
+    - role: firewall-allows-web-traffic
 #    - { role: vmware-local-dev-server, when: server_type == 'vmware-fusion'}
     # - { role: secrets-production, when: False }
       # DIDNT WORK FOR ENCRYPTED SHIT BECAUSE ALWAYS LOADED, ANYHOW DESPITE CONDITION
