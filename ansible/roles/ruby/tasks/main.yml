@@ -50,6 +50,22 @@
   - name: "Install ruby (make)"
     command: make chdir={{ ruby_src_path }}
 
+  - name: 'Remove existing ruby binaries'
+    file: path=/usr/local/bin/{{ item }} state=absent
+    with_items:
+      - erb
+      - gem
+      - irb
+      - rake
+      - rdoc
+      - ri
+      - ruby
+
+    #  Mason: otherwise we get shitty prompts like this that hang automation
+    #  on next 'sudo make install' step:
+    #  rake's executable "rake" conflicts with /usr/local/bin/rake
+    #  Overwrite the executable? [yN]  N
+
   - name: "Install ruby (install)"
     become: true
     command: make install chdir={{ ruby_src_path }}
