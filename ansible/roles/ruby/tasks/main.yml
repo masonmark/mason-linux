@@ -60,6 +60,7 @@
       - rdoc
       - ri
       - ruby
+    become: true
 
     #  Mason: otherwise we get shitty prompts like this that hang automation
     #  on next 'sudo make install' step:
