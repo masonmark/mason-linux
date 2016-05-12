@@ -23,7 +23,7 @@
 #    - role: mason-linux-compatible
 #    - role: mason-linux-core
 #    - role: ruby
-#    - role: rails
+    - role: rails
     - role: firewall-allows-web-traffic
 #    - { role: vmware-local-dev-server, when: server_type == 'vmware-fusion'}
     # - { role: secrets-production, when: False }

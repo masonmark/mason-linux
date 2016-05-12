@@ -2,17 +2,20 @@
 # tasks file for rails
 
 - name: "Update RubyGems system software"
-  command: /usr/local/bin/gem update --system
+  command: /usr/local/bin/gem update --system --force
   become: true
   register: gem_update_system_result
 
-- file: path=/usr/local/bin/rake state=absent
+- name: 'Delete existing rake to prevent hang due to conflict'
+  file: path=/usr/local/bin/rake state=absent
   become: true
 
-- file: path=/usr/local/bin/ri state=absent
+- name: 'Delete existing ri to prevent hang due to conflict'
+  file: path=/usr/local/bin/ri state=absent
   become: true
 
-- file: path=/usr/local/bin/rdoc state=absent
+- name: 'Delete existing rdoc to prevent hang due to conflict'
+  file: path=/usr/local/bin/rdoc state=absent
   become: true
 
 - name: 'print fucktarded warning about bug #14'
@@ -28,7 +31,7 @@
           # FIXME: this is a fuckin travesty and adds many seconds to role execution... fix it someday soon?
 
 - name: "Update installed gems"
-  command: /usr/local/bin/gem update --no-ri --no-rdoc
+  command: /usr/local/bin/gem update --no-ri --no-rdoc --force
   become: true
   register: gem_update_result
   #  async: 5
@@ -37,6 +40,8 @@
   # Provisioning automation hangs at 'gem update' #14
   # https://github.com/RobertReidInc/rollerball/issues/14
   # Hence all this fuckery in this section.
+
+- debug: var=gem_update_result
 
 - name: "Manually reinstall rake"
   command: /usr/local/bin/gem install rake --no-ri --no-rdoc

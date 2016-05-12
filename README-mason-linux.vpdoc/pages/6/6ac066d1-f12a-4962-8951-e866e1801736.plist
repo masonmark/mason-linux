@@ -19,19 +19,19 @@
 	<key>categories</key>
 	<array/>
 	<key>createdDate</key>
-	<date>2016-05-02T06:56:03Z</date>
+	<date>2016-05-12T06:43:47Z</date>
 	<key>dataHash</key>
-	<string>f15d0c07523e736a1a136664e971d4c5369f53b1</string>
+	<string>ac4317c683c33031a2773f6278ca3a9c169fb0a7</string>
 	<key>displayName</key>
-	<string>Index</string>
+	<string>same old problem with gem update hanging the fucking automation</string>
 	<key>encrypted</key>
 	<string>No</string>
 	<key>key</key>
-	<string>index</string>
+	<string>same old problem with gem update hanging the fucking automation</string>
 	<key>metaValues</key>
 	<dict/>
 	<key>modifiedDate</key>
-	<date>2016-05-12T06:43:47Z</date>
+	<date>2016-05-12T07:25:26Z</date>
 	<key>shouldHighlightLinks</key>
 	<string>Yes</string>
 	<key>skipOnExport</key>
@@ -39,7 +39,7 @@
 	<key>uti</key>
 	<string>com.apple.rtfd</string>
 	<key>uuid</key>
-	<string>424d06ff-2eb5-41e6-b75b-e92704281576</string>
+	<string>6ac066d1-f12a-4962-8951-e866e1801736</string>
 	<key>version</key>
 	<integer>1</integer>
 </dict>

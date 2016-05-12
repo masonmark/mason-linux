@@ -11,7 +11,7 @@
 	<key>dbVersion</key>
 	<string>7</string>
 	<key>expectedPageCount</key>
-	<integer>2</integer>
+	<integer>4</integer>
 	<key>localWebAccess</key>
 	<false/>
 	<key>openWindows</key>
@@ -25,19 +25,31 @@
 			<array>
 				<dict>
 					<key>itemUUID</key>
+					<string>fe5a1923-ac08-4f05-95c8-5c4d64c74273</string>
+					<key>rulerVisible</key>
+					<true/>
+					<key>selectedRange</key>
+					<string>{2495, 0}</string>
+					<key>visibleGlyphs</key>
+					<string>{0, 2269}</string>
+					<key>zoomScale</key>
+					<real>1</real>
+				</dict>
+				<dict>
+					<key>itemUUID</key>
 					<string>424d06ff-2eb5-41e6-b75b-e92704281576</string>
 					<key>rulerVisible</key>
 					<false/>
 					<key>selectedRange</key>
-					<string>{57, 0}</string>
+					<string>{13, 0}</string>
 					<key>visibleGlyphs</key>
-					<string>{0, 57}</string>
+					<string>{0, 232}</string>
 					<key>zoomScale</key>
 					<real>1</real>
 				</dict>
 			</array>
 			<key>windowFrame</key>
-			<string>{{233, 107}, {632, 1310}}</string>
+			<string>{{997, 33}, {707, 1384}}</string>
 		</dict>
 	</array>
 	<key>skIndexVersion</key>
