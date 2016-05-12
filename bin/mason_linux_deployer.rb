@@ -46,6 +46,7 @@ class MasonLinuxDeployer
       greet_user
       process_args
       confirm_settings
+      settings_write
       perform_work
   end
 
@@ -84,8 +85,6 @@ class MasonLinuxDeployer
 
   def perform_work
     command = "#{build_command_for_playbook @settings[:ansible_playbook]}"
-
-    settings_write
 
     puts "\nATTEMPTING TO DEPLOY VIA ANSIBLE AS FOLLOWS:\n"
     puts command
