@@ -16,18 +16,18 @@
   when: not firewalld_is_installed
 
 - name: "firewall-cmd: open HTTP port 80"
-  command: firewall-cmd --permanent --add-service http
+  command: /usr/bin/firewall-cmd --permanent --add-service http
   become: true
 
 - name: "firewall-cmd: open port 3000 (for manual rails & byebug)"
-  command: firewall-cmd --permanent --add-port=3000/tcp
+  command: /usr/bin/firewall-cmd --permanent --add-port=3000/tcp
   become: true
   # actually this is useful on AWS too. when: server_type == 'vmware-fusion'
 
 - name: "firewall-cmd: open HTTPS port 443"
-  command: firewall-cmd --permanent --add-service https
+  command: /usr/bin/firewall-cmd --permanent --add-service https
   become: true
 
 - name: "firewall-cmd: reload"
-  command: firewall-cmd --reload
+  command: /usr/bin/firewall-cmd --reload
   become: true
