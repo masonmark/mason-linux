@@ -4,6 +4,8 @@
 - stat: path=/usr/bin/firewall-cmd
   register: firewalld_is_installed
 
+- debug: var=firewalld_is_installed
+
 - block:
   - name: 'Install firewalld'
     yum: pkg=firewalld state=installed
@@ -13,7 +15,7 @@
     service: name=firewalld enabled=yes state=restarted
     become: true
 
-  when: not firewalld_is_installed
+  when: not firewalld_is_installed.stat.exists
 
 - name: "firewall-cmd: open HTTP port 80"
   command: /usr/bin/firewall-cmd --permanent --add-service http
