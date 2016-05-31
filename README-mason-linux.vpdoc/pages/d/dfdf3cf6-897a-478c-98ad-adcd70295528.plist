@@ -19,19 +19,19 @@
 	<key>categories</key>
 	<array/>
 	<key>createdDate</key>
-	<date>2016-05-02T06:56:03Z</date>
+	<date>2016-05-31T00:22:32Z</date>
 	<key>dataHash</key>
-	<string>689097e52c553fa22bf450b66d96fe6e814070c4</string>
+	<string>72109b4a40f3889e5b6ab4018655095b869fd0ae</string>
 	<key>displayName</key>
-	<string>Index</string>
+	<string>rewrite the deploy script based on Derployer from mason.gem</string>
 	<key>encrypted</key>
 	<string>No</string>
 	<key>key</key>
-	<string>index</string>
+	<string>rewrite the deploy script based on derployer from mason.gem</string>
 	<key>metaValues</key>
 	<dict/>
 	<key>modifiedDate</key>
-	<date>2016-05-31T01:11:16Z</date>
+	<date>2016-05-31T01:03:59Z</date>
 	<key>shouldHighlightLinks</key>
 	<string>Yes</string>
 	<key>skipOnExport</key>
@@ -39,7 +39,7 @@
 	<key>uti</key>
 	<string>com.apple.rtfd</string>
 	<key>uuid</key>
-	<string>424d06ff-2eb5-41e6-b75b-e92704281576</string>
+	<string>dfdf3cf6-897a-478c-98ad-adcd70295528</string>
 	<key>version</key>
 	<integer>1</integer>
 </dict>
