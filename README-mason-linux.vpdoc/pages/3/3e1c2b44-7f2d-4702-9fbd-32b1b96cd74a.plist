@@ -19,19 +19,19 @@
 	<key>categories</key>
 	<array/>
 	<key>createdDate</key>
-	<date>2016-05-02T06:56:03Z</date>
+	<date>2016-05-31T23:53:41Z</date>
 	<key>dataHash</key>
-	<string>037b27f06a3fa441802c9637e1824638a488b6b1</string>
+	<string>30ebb5aac60e6e5ed07bacb5de885a694f102d25</string>
 	<key>displayName</key>
-	<string>Index</string>
+	<string>make a VMWare image from scratch</string>
 	<key>encrypted</key>
 	<string>No</string>
 	<key>key</key>
-	<string>index</string>
+	<string>make a vmware image from scratch</string>
 	<key>metaValues</key>
 	<dict/>
 	<key>modifiedDate</key>
-	<date>2016-06-01T00:32:03Z</date>
+	<date>2016-06-01T00:31:43Z</date>
 	<key>shouldHighlightLinks</key>
 	<string>Yes</string>
 	<key>skipOnExport</key>
@@ -39,7 +39,7 @@
 	<key>uti</key>
 	<string>com.apple.rtfd</string>
 	<key>uuid</key>
-	<string>424d06ff-2eb5-41e6-b75b-e92704281576</string>
+	<string>3e1c2b44-7f2d-4702-9fbd-32b1b96cd74a</string>
 	<key>version</key>
 	<integer>1</integer>
 </dict>

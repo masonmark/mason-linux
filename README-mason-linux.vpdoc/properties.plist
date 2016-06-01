@@ -15,14 +15,14 @@
 	<key>defaultUUID</key>
 	<string>424d06ff-2eb5-41e6-b75b-e92704281576</string>
 	<key>expectedPageCount</key>
-	<integer>5</integer>
+	<integer>7</integer>
 	<key>localWebAccess</key>
 	<false/>
 	<key>openWindows</key>
 	<array>
 		<dict>
 			<key>displayUUID</key>
-			<string>6ac066d1-f12a-4962-8951-e866e1801736</string>
+			<string>424d06ff-2eb5-41e6-b75b-e92704281576</string>
 			<key>drawerOpen</key>
 			<false/>
 			<key>openUUIDProperties</key>
@@ -35,25 +35,25 @@
 					<key>selectedRange</key>
 					<string>{0, 0}</string>
 					<key>visibleGlyphs</key>
-					<string>{0, 1862}</string>
+					<string>{0, 1834}</string>
 					<key>zoomScale</key>
 					<real>1</real>
 				</dict>
 				<dict>
 					<key>itemUUID</key>
-					<string>6ac066d1-f12a-4962-8951-e866e1801736</string>
+					<string>424d06ff-2eb5-41e6-b75b-e92704281576</string>
 					<key>rulerVisible</key>
 					<false/>
 					<key>selectedRange</key>
-					<string>{458, 0}</string>
+					<string>{261, 0}</string>
 					<key>visibleGlyphs</key>
-					<string>{0, 3205}</string>
+					<string>{0, 677}</string>
 					<key>zoomScale</key>
 					<real>1</real>
 				</dict>
 			</array>
 			<key>windowFrame</key>
-			<string>{{997, 0}, {707, 1177}}</string>
+			<string>{{1186, 101}, {707, 1177}}</string>
 		</dict>
 	</array>
 	<key>skIndexVersion</key>
