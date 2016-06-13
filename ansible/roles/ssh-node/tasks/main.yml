@@ -1,15 +1,6 @@
 ---
 # tasks file for ssh-node
 
-- name: 'Ensure that the app user has the SSH public key of git.fivespeed.com installed'
-  lineinfile: dest=/etc/ssh/ssh_known_hosts line="{{git_server_public_key}}" state=present create=yes
-  become: true
-  # hmm seems this may not be needed if we do accept_hostkey=yes
-  # Mason 2016-01-30: FIXME: test whether or not this is, in fact, necessary, and shitcan it if not.
-  # Mason 2016-01-31: Well it IS necessary, unless we use accept_hostkey, but if we do that then the
-  # fucking chink government (or whoever) could MITM us with a simple DNS forge, and then steal our
-  # fucking awesome Rollerball source code! So let's just put the GutHub SSH key in as a static resource.
-
 - name: 'Ensure that the app user has the SSH public key of github.com installed'
   lineinfile: dest=/etc/ssh/ssh_known_hosts line="{{github_public_key}}" state=present create=yes
   become: true

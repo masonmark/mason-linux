@@ -1,5 +1,3 @@
-# This file is to make it easier to test Ansible include files. Those cannot be directly run from Ansible, sinced they are not valid playbooks. To use it, just make sure the contents are the same as site.yml, but then change the list of roles to be applied (usually to just the one you want to debug).
-#
 # site.yml — the master Ansible playbook for Mason Linux
 #
 # This playbook is intended to be driven by mason_linux_deployer.rb, the script that
@@ -20,11 +18,15 @@
     rails_app_name: rails_app
 
   roles:
-#    - role: mason-linux-compatible
-#    - role: mason-linux-core
-#    - role: ruby
+    - role: mason-linux-compatible
+    - role: mason-linux-core
+    - role: ruby
     - role: rails
+    - role: postgresql
+    - role: ssh-node
+    - role: selinux-nginx-puma
     - role: firewall-allows-web-traffic
-#    - { role: vmware-local-dev-server, when: server_type == 'vmware-fusion'}
+    - role: nginx-reverse-proxy-to-puma
+    - { role: vmware-local-dev-server, when: server_type == 'vmware-fusion'}
     # - { role: secrets-production, when: False }
       # DIDNT WORK FOR ENCRYPTED SHIT BECAUSE ALWAYS LOADED, ANYHOW DESPITE CONDITION
